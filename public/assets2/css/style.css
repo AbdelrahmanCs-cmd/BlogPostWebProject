@@ -224,6 +224,14 @@ h3 {
     min-height: 100vh;
     width: 80%;
 }
+.main-col-useredit {
+    grid-column: 2;
+    margin-left: 240px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: calc(100% - 240px);
+}
 /* ============ TOPBAR ============ */
 .topbar {
     background: var(--surface);
@@ -543,17 +551,17 @@ tbody tr:hover {
     color: var(--muted);
     border-color: var(--line-strong);
 }
-.badge-role-super {
+.badge-role-super_admin {
     background: #f4e6e4;
     color: var(--accent);
     border-color: #e6c9c5;
 }
-.badge-role-editor {
+.badge-role-admin {
     background: #eceaf5;
     color: #5b4fa6;
     border-color: #d8d4ec;
 }
-.badge-role-author {
+.badge-role-user {
     background: #e9eef3;
     color: #3c5a75;
     border-color: #cddbe6;
