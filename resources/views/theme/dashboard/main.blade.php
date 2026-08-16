@@ -10,7 +10,7 @@
                     <div class="welcome-row">
                         <div>
                             <div class="welcome-heading">Dashboard</div>
-                            <div class="welcome-date" id="todayDate">Loading date…</div>
+                            <div class="welcome-date" id="todayDate">{{ date('F j, Y') }}</div>
                         </div>
                         <div class="quick-actions">
                             {{-- <!-- BLADE: @can('create', App\Models\Post::class) --> --}}
