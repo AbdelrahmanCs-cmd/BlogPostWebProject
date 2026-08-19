@@ -22,18 +22,20 @@
                                 </svg>
                                 New post
                             </a>
-                            {{-- <!-- BLADE: @can('create', App\Models\User::class) --> --}}
-                            <a class="btn btn-ghost" href="{{ route('users.create') }}" data-requires-role="super_admin">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                                    <circle cx="9" cy="7" r="4" />
-                                    <path d="M20 8v6M23 11h-6" />
-                                </svg>
-                                New user
-                            </a>
+                            @can('create', App\Models\User::class)
+                                <a class="btn btn-ghost" href="{{ route('users.create') }}" data-requires-role="super_admin">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                        <circle cx="9" cy="7" r="4" />
+                                        <path d="M20 8v6M23 11h-6" />
+                                    </svg>
+                                    New user
+                                </a>
+                            @endcan
                         </div>
                     </div>
+
 
                     <!-- BLADE: values from $totalUsers / $totalPosts / $draftCount / $publishedCount -->
                     <div class="stat-grid">
@@ -80,42 +82,64 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="post-title">Rolling out the new onboarding flow</div>
-                                            <div class="post-meta">/blog/rolling-out-new-onboarding-flow</div>
-                                        </td>
-                                        <td>Marcus Reed</td>
-                                        <td><span class="badge badge-published">Published</span></td>
-                                        <td>2 hours ago</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="post-title">Q3 roadmap: what's shipping next</div>
-                                            <div class="post-meta">/blog/q3-roadmap-whats-shipping-next</div>
-                                        </td>
-                                        <td>Sara Malik</td>
-                                        <td><span class="badge badge-draft">Draft</span></td>
-                                        <td>Yesterday</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="post-title">Notes from the design review</div>
-                                            <div class="post-meta">/blog/notes-from-the-design-review</div>
-                                        </td>
-                                        <td>Priya Nair</td>
-                                        <td><span class="badge badge-published">Published</span></td>
-                                        <td>3 days ago</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="post-title">Hiring: two open roles on platform</div>
-                                            <div class="post-meta">/blog/hiring-two-open-roles-platform</div>
-                                        </td>
-                                        <td>Marcus Reed</td>
-                                        <td><span class="badge badge-draft">Draft</span></td>
-                                        <td>4 days ago</td>
-                                    </tr>
+
+                                    @forelse ($latestPosts as $post)
+                                        <tr>
+
+                                            {{-- Post title + slug --}}
+                                            <td>
+
+                                                <div class="post-title">
+                                                    {{ $post->title }}
+                                                </div>
+
+                                                <div class="post-meta">
+                                                    /blog/{{ $post->slug }}
+                                                </div>
+
+                                            </td>
+
+
+                                            {{-- Author --}}
+                                            <td>
+                                                {{ $post->user->name ?? 'Unknown' }}
+                                            </td>
+
+
+                                            {{-- Status --}}
+                                            <td>
+
+                                                @if ($post->status === 'published')
+                                                    <span class="badge badge-published">
+                                                        Published
+                                                    </span>
+                                                @else
+                                                    <span class="badge badge-draft">
+                                                        Draft
+                                                    </span>
+                                                @endif
+
+                                            </td>
+
+
+                                            {{-- Created date --}}
+                                            <td>
+                                                {{ $post->created_at->diffForHumans() }}
+                                            </td>
+
+                                        </tr>
+
+                                    @empty
+
+                                        <tr>
+
+                                            <td colspan="4" style="text-align: center;">
+                                                No posts found.
+                                            </td>
+
+                                        </tr>
+                                    @endforelse
+
                                 </tbody>
                             </table>
                         </div>

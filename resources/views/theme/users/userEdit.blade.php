@@ -130,8 +130,8 @@
                                 Super Admin
                             </option>
 
-                            <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>
-                                Admin
+                            <option value="editor" {{ old('role', $user->role) == 'editor' ? 'selected' : '' }}>
+                                Editor
                             </option>
 
                             <option value="user" {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>
@@ -162,13 +162,13 @@
                                 Active
                             </option>
 
-                            <option value="0" {{ old('status', $user->status ?? 1) == 0 ? 'selected' : '' }}>
+                            <option value="0" {{ old('is_active', $user->is_active ?? 1) == 0 ? 'selected' : '' }}>
                                 Inactive
                             </option>
 
                         </select>
 
-                        @error('status')
+                        @error('is_active')
                             <span class="field-error">
                                 {{ $message }}
                             </span>

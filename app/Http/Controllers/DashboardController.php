@@ -13,10 +13,14 @@ class DashboardController extends Controller
     {
         $totalUsers = User::showAllUsers();
         $totalPosts = Blog::count();
+        $latestPosts = Blog::latest()
+        ->take(4)
+        ->get();
 
         return view('theme.dashboard.main', compact(
             'totalUsers',
-            'totalPosts'
+            'totalPosts',
+            'latestPosts'
         ));
     }
 }

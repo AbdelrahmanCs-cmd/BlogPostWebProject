@@ -20,6 +20,9 @@ class UserController extends Controller
     // }
     public function index(Request $request)
     {
+        if (!auth()->user()->can('viewAny', User::class)) {
+            abort(404, 'Unauthorized action.');
+        }
         $query = User::query();
 
         // Search by name or email
@@ -37,9 +40,9 @@ class UserController extends Controller
             $query->where('role', $request->role);
         }
 
-        // Filter by status
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
+        // Filter by is_active
+        if ($request->filled('is_active')) {
+            $query->where('is_active', $request->is_active);
         }
 
         // Pagination
@@ -57,6 +60,9 @@ class UserController extends Controller
     #[Middleware('auth')]
     public function create()
     {
+        if (!auth()->user()->can('create', User::class)) {
+            abort(404, 'Unauthorized action.');
+        }
         return view('theme.users.userCreate');
     }
 
@@ -72,9 +78,9 @@ class UserController extends Controller
 
             'password' => 'required|string|min:8|confirmed',
 
-            'role' => 'required|in:user,admin,super_admin',
+            'role' => 'required|in:user,editor,super_admin',
 
-            'status' => 'required|boolean',
+            'is_active' => 'required|boolean',
         ]);
 
         $user = User::create([
@@ -82,7 +88,7 @@ class UserController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => $validated['role'],
-            'is_active' => $validated['status'],
+            'is_active' => $validated['is_active'],
         ]);
 
         return redirect()
@@ -122,9 +128,9 @@ class UserController extends Controller
 
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
 
-            'role'  => 'required|in:user,admin,super_admin',
+            'role'  => 'required|in:user,editor,super_admin',
 
-            'status' => 'nullable|boolean',
+            'is_active' => 'nullable|boolean',
 
             'password' => 'nullable|string|min:8|confirmed',
         ]);
@@ -134,9 +140,9 @@ class UserController extends Controller
         $user->email = $validated['email'];
         $user->role = $validated['role'];
 
-        // Update status if it exists in the request
-        if (isset($validated['status'])) {
-            $user->status = $validated['status'];
+        // Update is_active if it exists in the request
+        if (isset($validated[''])) {
+            $user->is_active = $validated['is_active'];
         }
 
         // Only change password if user entered a new one
