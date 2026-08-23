@@ -32,6 +32,9 @@ Route::resource('blogs', BlogController::class);
 //     return view('theme.dashboard.partialDashboard.main');
 // })->name('main');
 
+//Posts Controller
+Route::resource('posts', BlogController::class);
+
 // users controller
 Route::resource('users', UserController::class);
 

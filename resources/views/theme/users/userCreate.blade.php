@@ -148,8 +148,8 @@
                                 Super Admin
                             </option>
 
-                            <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>
-                                Admin
+                            <option value="editor" {{ old('role') === 'editor' ? 'selected' : '' }}>
+                                Editor
                             </option>
 
                             <option value="user" {{ old('role') === 'user' ? 'selected' : '' }}>

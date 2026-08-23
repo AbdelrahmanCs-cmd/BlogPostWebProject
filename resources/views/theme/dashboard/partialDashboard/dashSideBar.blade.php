@@ -8,30 +8,31 @@
              <div class="brand-sub">Blog Admin</div>
          </div>
      </div>
+     @can('view', App\Models\User::class)
+         <!-- Overview -->
+         <div class="nav-label">Overview</div>
 
-     <!-- Overview -->
-     <div class="nav-label">Overview</div>
-
-     <ul class="nav">
-         <li>
-             <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'is-active' : '' }}">
-                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                     <rect x="3" y="3" width="7" height="9" />
-                     <rect x="14" y="3" width="7" height="5" />
-                     <rect x="14" y="12" width="7" height="9" />
-                     <rect x="3" y="16" width="7" height="5" />
-                 </svg>
-                 Dashboard
-             </a>
-         </li>
-     </ul>
+         <ul class="nav">
+             <li>
+                 <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'is-active' : '' }}">
+                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                         <rect x="3" y="3" width="7" height="9" />
+                         <rect x="14" y="3" width="7" height="5" />
+                         <rect x="14" y="12" width="7" height="9" />
+                         <rect x="3" y="16" width="7" height="5" />
+                     </svg>
+                     Dashboard
+                 </a>
+             </li>
+         </ul>
+     @endcan
 
      <!-- Content -->
      <div class="nav-label">Content</div>
 
      <ul class="nav">
          <li>
-             <a href="posts-index.html" class="nav-link">
+             <a href="{{ route('posts.index') }}" class="nav-link">
                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
