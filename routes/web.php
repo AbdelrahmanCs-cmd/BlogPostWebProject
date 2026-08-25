@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\themeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostsController;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
 // THEME ROUTES
@@ -33,7 +34,7 @@ Route::resource('blogs', BlogController::class);
 // })->name('main');
 
 //Posts Controller
-Route::resource('posts', BlogController::class);
+Route::resource('posts', PostsController::class);
 
 // users controller
 Route::resource('users', UserController::class);

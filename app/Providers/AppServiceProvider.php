@@ -26,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
         // View::share('totalUsers', User::count());
         View::share('draftPosts', Blog::where('status', 'draft')->count());
         View::share('publishedPosts', Blog::where('status', 'published')->count());
+        $latestPosts = Blog::latest()->take(5)->get();
+        View::share('latestPosts', $latestPosts);   
     }
 }

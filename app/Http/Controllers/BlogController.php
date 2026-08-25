@@ -63,7 +63,11 @@ class BlogController
      */
     public function show(Blog $blog)
     {
-        //
+        $blog = Blog::findOrFail($blog->id);
+        $user = auth()->user();
+
+
+        return view('theme.posts.single-post-view', compact('blog'));
     }
 
     /**

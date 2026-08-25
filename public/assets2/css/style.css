@@ -224,6 +224,14 @@ h3 {
     min-height: 100vh;
     width: 80%;
 }
+.main-col-posts {
+    grid-column: 2;
+    margin-left: 240px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 80%;
+}
 .main-col-useredit {
     grid-column: 2;
     margin-left: 240px;
@@ -231,6 +239,31 @@ h3 {
     flex-direction: column;
     min-height: 100vh;
     width: calc(100% - 240px);
+}
+.main-col-post-edit {
+    grid-column: 2;
+    margin-left: 240px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: calc(100% - 240px);
+}
+
+/* ============ PUBLIC BLOG POST IMAGE ============ */
+
+.post-image {
+    width: 100%;
+    margin: 0 0 28px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--surface);
+}
+
+.post-image img {
+    display: block;
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
 }
 /* ============ TOPBAR ============ */
 .topbar {
