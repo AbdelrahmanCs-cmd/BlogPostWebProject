@@ -17,6 +17,7 @@ class themeController extends Controller
     {
         // ensure required arguments are provided to avoid argument count errors
         $blogs = Blog::paginate(2);
+
         return view('theme.index', compact('blogs'));
     }
     function login()
@@ -36,7 +37,8 @@ class themeController extends Controller
         // provide all expected arguments to paginate to satisfy static analysis
         $categoryName = Category::find($id)->name;
         $blogs = Blog::where('category_id', $id)->paginate(8);
-        return view('theme.category', compact('blogs', 'categoryName'));
+        $categories = Category::withCount('blogs')->get();
+        return view('theme.category', compact('blogs', 'categoryName', 'categories'));
     }
     function blogDetails()
     {

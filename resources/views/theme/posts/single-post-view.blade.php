@@ -8,10 +8,13 @@
             <div class="brand-text">LBAS</div>
         </div>
     </div>
+    @guest
 
-    <a class="btn btn-ghost btn-sm" href="{{ route('login') }}">
-        Log in
-    </a>
+
+        <a class="btn btn-ghost btn-sm" href="{{ route('login') }}">
+            Log in
+        </a>
+    @endguest
 </nav>
 
 

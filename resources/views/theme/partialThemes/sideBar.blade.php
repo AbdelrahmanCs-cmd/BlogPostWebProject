@@ -40,7 +40,7 @@
                         <li>
                             <a href="#" class="d-flex justify-content-between">
                                 <p>{{ $category->name }}</p>
-                                <p>(03)</p>
+                                <p>({{ $category->blogs()->count() }})</p>
                             </a>
                         </li>
                     @endforeach

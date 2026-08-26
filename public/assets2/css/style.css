@@ -240,6 +240,14 @@ h3 {
     min-height: 100vh;
     width: calc(100% - 240px);
 }
+.main-col-user-create {
+    grid-column: 2;
+    margin-left: 240px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: calc(100% - 240px);
+}
 .main-col-post-edit {
     grid-column: 2;
     margin-left: 240px;

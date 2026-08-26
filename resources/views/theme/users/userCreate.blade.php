@@ -1,7 +1,7 @@
 @extends('theme.dashboard.partialDashboard.dashMaster')
 
 @section('content')
-    <div class="main-col">
+    <div class="main-col-user-create">
 
         <main>
 
@@ -174,16 +174,14 @@
                             Status
                         </label>
 
-                        <select id="status" name="status">
-
-                            <option value="1" {{ old('status', 1) == 1 ? 'selected' : '' }}>
+                        <select id="is_active" name="is_active">
+                            <option value="1" {{ old('is_active', 1) == 1 ? 'selected' : '' }}>
                                 Active
                             </option>
 
-                            <option value="0" {{ old('status') === '0' ? 'selected' : '' }}>
+                            <option value="0" {{ old('is_active') === '0' ? 'selected' : '' }}>
                                 Inactive
                             </option>
-
                         </select>
 
                         <span class="hint">

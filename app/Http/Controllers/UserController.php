@@ -73,17 +73,13 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|min:2|max:100',
-
             'email' => 'required|email|max:255|unique:users,email',
-
             'password' => 'required|string|min:8|confirmed',
-
             'role' => 'required|in:user,editor,super_admin',
-
             'is_active' => 'required|boolean',
         ]);
 
-        $user = User::create([
+        User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
@@ -141,7 +137,7 @@ class UserController extends Controller
         $user->role = $validated['role'];
 
         // Update is_active if it exists in the request
-        if (isset($validated[''])) {
+        if (array_key_exists('is_active', $validated)) {
             $user->is_active = $validated['is_active'];
         }
 
